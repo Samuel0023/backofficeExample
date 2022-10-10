@@ -1,21 +1,21 @@
 const createHttpError = require('http-errors')
-const { getEnded } = require('../services/requirements/requirements')
+const { getDone } = require('../services/requirements/cantDone')
 const { endpointResponse } = require('../helpers/success')
 const { catchAsync } = require('../helpers/catchAsync')
 
 module.exports = {
-  get: catchAsync(async (req, res, next) => {
+  getDone: catchAsync(async (req, res, next) => {
     try {
-      const response = await getEnded()
+      const response = await getDone()
       endpointResponse({
         res,
-        message: 'Index retrieved successfully',
+        message: 'Requirements retrieved successfully',
         body: response,
       })
     } catch (error) {
       const httpError = createHttpError(
         error.statusCode,
-        `[Error retrieving index] - [index - GET]: ${error.message}`,
+        `[Error retrieving requirements] - [requirements - GET]: ${error.message}`,
       )
       next(httpError)
     }
