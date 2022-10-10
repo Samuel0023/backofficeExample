@@ -14,7 +14,9 @@ class Server {
     this.app = express()
     this.port = process.env.PORT
     this.server = createServer(this.app)
-    this.paths = { }
+    this.paths = {
+      requirements: '/backoffice',
+    }
     // connection db
 
     // middlewares
@@ -37,8 +39,7 @@ class Server {
   }
 
   routes() {
-    this.app.use('/', indexRouter)
-    // this.app.use(this.paths.auth, require('./user/routes/user.auth.routes'))
+    this.app.use(this.paths.requirements, indexRouter.requirements)
   }
 
   errorHandlers() {
