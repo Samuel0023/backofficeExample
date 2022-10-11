@@ -1,3 +1,3 @@
-const requirementsRouter = require('./finished')
+const requirementsRouter = require('./requirements')
 
 module.exports = requirementsRouter

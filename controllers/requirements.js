@@ -1,12 +1,13 @@
 const createHttpError = require('http-errors')
-const { getDone } = require('../services/requirements/cantDone')
+const { getStats } = require('../services/requirements/kpisRequirements')
 const { endpointResponse } = require('../helpers/success')
 const { catchAsync } = require('../helpers/catchAsync')
 
 module.exports = {
-  getDone: catchAsync(async (req, res, next) => {
+  get: catchAsync(async (req, res, next) => {
+    const { params: { projectId }, body: { dateInit, dateEnd } } = req
     try {
-      const response = await getDone()
+      const response = await getStats(projectId, dateInit, dateEnd)
       endpointResponse({
         res,
         message: 'Requirements retrieved successfully',

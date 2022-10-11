@@ -1,9 +1,9 @@
 const { Router } = require('express')
-const { getDone } = require('../../controllers/requirements')
+const { get } = require('../../controllers/requirements')
 // const { validateAtlassianToken } = require('../../middlewares/validateAtlassianToken')
 
 const requirementsRouter = Router()
 
-requirementsRouter.get('/', getDone)
+requirementsRouter.get('/:projectId', get)
 
 module.exports = requirementsRouter
